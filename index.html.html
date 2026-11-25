@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ernesto Rodrigo Pardo Villagran — Physics, Systems &amp; Pentathlon</title>
+  <meta name="description" content="Personal portfolio of Ernesto Rodrigo Pardo Villagran (Rodrigo) in Guatemala City: solid-state magnetohydrodynamics, space technologies, U17 Modern Pentathlon, visual art, and monthly dispatches." />
+
+  <!-- Distinct editorial + technical typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Newsreader"', 'Georgia', 'serif'],
+            sans: ['"Space Grotesk"', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
+          colors: {
+            paper: '#F4F2EC',
+            surface: '#FCFBF7',
+            ink: '#121316',
+            cobalt: '#1D4ED8',
+            signal: '#C2410C',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Subtle technical drafting grid & custom scrollbar for a deliberate lab-notebook feel */
+    body {
+      background-color: #F4F2EC;
+      color: #121316;
+      background-image:
+        linear-gradient(to right, rgba(18, 19, 22, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(18, 19, 22, 0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      overflow-x: hidden;
+    }
+
+    .editorial-rule {
+      border-color: rgba(18, 19, 22, 0.16);
+    }
+
+    .reveal-node {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1), transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-node.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-cobalt selection:text-white">
+  <!-- Top Technical Status Strip -->
+  <div class="border-b editorial-rule bg-ink text-paper text-[11px] font-mono tracking-wider">
+    <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-2 px-4 py-2 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-2.5">
+        <span class="inline-block h-2 w-2 bg-signal"></span>
+        <span>GUATEMALA CITY · 14.6349° N, 90.5069° W</span>
+      </div>
+      <div class="flex items-center gap-4 text-paper/75">
+        <span>HANDLE: @RPARDOSTUDIO</span>
+        <span class="hidden sm:inline">·</span>
+        <span class="hidden sm:inline">EST. 2011 (AGE 15)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b editorial-rule bg-paper/95 backdrop-blur-xs">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+      <a href="#hero" class="group flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center border border-ink bg-surface font-mono text-xs font-semibold tracking-tighter text-ink transition-colors group-hover:bg-cobalt group-hover:border-cobalt group-hover:text-white">
+          ERP
+        </span>
+        <div>
+          <span class="block font-serif text-base font-medium leading-tight text-ink">
+            Ernesto Rodrigo Pardo Villagran
+          </span>
+          <span class="block font-mono text-[11px] text-ink/60">
+            PHYSICS · SYSTEMS · U17 PENTATHLON
+          </span>
+        </div>
+      </a>
+
+      <nav class="hidden items-center gap-6 text-xs font-mono uppercase tracking-wider md:flex">
+        <a href="#hero" class="text-ink/75 transition hover:text-cobalt">01/Identity</a>
+        <a href="#tks" class="text-ink/75 transition hover:text-cobalt">02/TKS</a>
+        <a href="#beyond-tks" class="text-ink/75 transition hover:text-cobalt">03/Beyond</a>
+        <a href="#now" class="text-ink/75 transition hover:text-cobalt">04/Now</a>
+        <a href="#contact" class="text-ink/75 transition hover:text-cobalt">05/Contact</a>
+        <a href="#newsletter" class="border border-ink bg-ink px-3 py-1.5 text-paper transition hover:bg-cobalt hover:border-cobalt">
+          06/Dispatch
+        </a>
+      </nav>
+
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        class="inline-flex items-center justify-center border border-ink bg-surface p-2 text-ink transition hover:bg-ink hover:text-paper md:hidden"
+      >
+        <svg id="icon-hamburger" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="square" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg id="icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="square" d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden border-t editorial-rule bg-surface px-4 py-3 md:hidden">
+      <div class="flex flex-col space-y-1 font-mono text-xs uppercase tracking-wider">
+        <a href="#hero" class="mobile-nav-link border-b editorial-rule py-2.5 text-ink">01 / Identity &amp; Pillars</a>
+        <a href="#tks" class="mobile-nav-link border-b editorial-rule py-2.5 text-ink">02 / TKS &amp; How I Think</a>
+        <a href="#beyond-tks" class="mobile-nav-link border-b editorial-rule py-2.5 text-ink">03 / Beyond TKS</a>
+        <a href="#now" class="mobile-nav-link border-b editorial-rule py-2.5 text-ink">04 / Now</a>
+        <a href="#contact" class="mobile-nav-link border-b editorial-rule py-2.5 text-ink">05 / Contact</a>
+        <a href="#newsletter" class="mobile-nav-link py-2.5 font-semibold text-cobalt">06 / Monthly Newsletter</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 01: HERO, PORTRAIT & SNAPSHOT + 3 INTERACTIVE PILLARS -->
+    <section id="hero" class="border-b editorial-rule py-10 sm:py-16">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-12 lg:items-start">
+          <!-- Left Editorial Statement -->
+          <div class="lg:col-span-7">
+            <div class="inline-flex flex-wrap items-center gap-2 border border-ink bg-surface px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-ink">
+              <span class="h-2 w-2 bg-cobalt"></span>
+              <span>Age 15 · Guatemala City</span>
+              <span>/</span>
+              <span>Physicist-in-Training · Builder · Contracted U17 Modern Pentathlete</span>
+            </div>
+
+            <h1 class="mt-5 font-serif text-4xl font-normal tracking-tight text-ink sm:text-5xl lg:text-[3.5rem] lg:leading-[1.06]">
+              Governing physics first. <span class="italic text-cobalt">Real hardware</span> second. Five-sport grit every day.
+            </h1>
+
+            <p class="mt-5 max-w-2xl text-base leading-relaxed text-ink/80 sm:text-lg">
+              I&apos;m Ernesto Rodrigo Pardo Villagran (Rodrigo)—a 15-year-old physicist-in-training, engineering
+              builder, and contracted U17 Modern Pentathlete based in Guatemala City. I investigate deep physical
+              systems, build tangible prototypes, and train across five demanding sporting disciplines without losing
+              sight of art, language, and community.
+            </p>
+
+            <div class="mt-7 flex flex-wrap items-center gap-3">
+              <a
+                href="#beyond-tks"
+                class="inline-flex items-center gap-2 border border-ink bg-ink px-5 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-paper transition hover:bg-cobalt hover:border-cobalt"
+              >
+                <span>Inspect Projects &amp; Preprints</span>
+                <span>&rarr;</span>
+              </a>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-2 border border-ink bg-surface px-5 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-ink transition hover:bg-paper"
+              >
+                <span>Connect &amp; Programs</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Portrait Frame + Snapshot Ledger -->
+          <div class="space-y-5 lg:col-span-5">
+            <div class="border border-ink bg-surface p-3 shadow-[4px_4px_0px_#121316]">
+              <div class="relative aspect-[4/5] w-full overflow-hidden border editorial-rule bg-stone-200">
+                <img
+                  id="portrait-img"
+                  src="./portrait.jpg"
+                  alt="Ernesto Rodrigo Pardo Villagran"
+                  class="h-full w-full object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
+                />
+                <div
+                  id="portrait-fallback"
+                  class="hidden h-full w-full flex-col items-center justify-center bg-stone-100 p-6 text-center"
+                >
+                  <span class="flex h-16 w-16 items-center justify-center border border-ink bg-ink font-mono text-lg font-semibold text-paper">
+                    ERP
+                  </span>
+                  <p class="mt-3 font-serif text-lg font-medium text-ink">Ernesto Rodrigo Pardo Villagran</p>
+                  <p class="mt-1 font-mono text-[11px] text-ink/65">
+                    Save image as portrait.jpg beside index.html or click &ldquo;Set Photo URL&rdquo;.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-2.5 flex items-center justify-between gap-2 font-mono text-[11px]">
+                <span class="truncate font-medium text-ink">FIG 01. GUATEMALA CITY</span>
+                <button
+                  id="toggle-photo-url-btn"
+                  type="button"
+                  class="shrink-0 border border-ink bg-paper px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-cobalt transition hover:bg-cobalt hover:text-white"
+                >
+                  Set Photo URL
+                </button>
+              </div>
+
+              <form id="photo-url-form" class="mt-2.5 hidden gap-2 border-t editorial-rule pt-2.5">
+                <input
+                  id="photo-url-input"
+                  type="url"
+                  placeholder="Paste image or Google Drive link..."
+                  class="min-w-0 flex-1 border border-ink bg-paper px-2.5 py-1.5 font-mono text-xs text-ink focus:border-cobalt focus:bg-white focus:outline-none"
+                />
+                <button
+                  type="submit"
+                  class="border border-ink bg-cobalt px-3 py-1.5 font-mono text-xs font-semibold uppercase text-white transition hover:bg-ink"
+                >
+                  Apply
+                </button>
+              </form>
+            </div>
+
+            <!-- Snapshot Card -->
+            <div class="border border-ink bg-surface p-5">
+              <div class="flex items-center justify-between border-b editorial-rule pb-3">
+                <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+                  Snapshot Dossier
+                </span>
+                <span class="font-mono text-[11px] text-ink/60">RODRIGO PARDO</span>
+              </div>
+
+              <dl class="mt-3.5 divide-y divide-ink/10 text-sm">
+                <div class="flex items-baseline justify-between gap-4 py-2">
+                  <dt class="font-mono text-[11px] uppercase text-ink/60">Focus</dt>
+                  <dd class="text-right font-medium text-ink">Physics, Energy &amp; Systems</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 py-2">
+                  <dt class="font-mono text-[11px] uppercase text-ink/60">Sport</dt>
+                  <dd class="text-right font-medium text-ink">Modern Pentathlon</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 py-2">
+                  <dt className="font-mono text-[11px] uppercase text-ink/60">Languages</dt>
+                  <dd class="text-right font-medium text-ink">Spanish · English · German · Japanese</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-4 pt-2">
+                  <dt class="font-mono text-[11px] uppercase text-ink/60">Instagram Profile</dt>
+                  <dd class="text-right font-mono text-xs font-semibold text-cobalt">@rpardostudio</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- PILLAR I: 12 STUDENT GENIUS ARCHETYPES -->
+        <div class="reveal-node mt-12 border border-ink bg-surface p-6 sm:p-8">
+          <div class="flex flex-col justify-between gap-4 border-b editorial-rule pb-6 lg:flex-row lg:items-end">
+            <div>
+              <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+                Hero Pillar I · 12 Student Genius Archetypes
+              </p>
+              <h2 class="mt-1.5 font-serif text-2xl font-normal text-ink sm:text-3xl">
+                Primary Genius Archetypes &amp; Supporting Facets
+              </h2>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-ink/75">
+                Explore my Primary Archetypes I–III (<strong class="font-semibold text-ink">The Systems Architect</strong>,
+                <strong class="font-semibold text-ink">The Theoretical Synthesizer</strong>, and
+                <strong class="font-semibold text-ink">The Relentless Builder</strong>), Supporting Facets (
+                <strong class="font-semibold text-ink">The First-Principles Investigator</strong>,
+                <strong class="font-semibold text-ink">The Disciplined Competitor</strong>, and
+                <strong class="font-semibold text-ink">The Creative Worldbuilder</strong>), or inspect all 12 Student
+                Genius Archetypes.
+              </p>
+            </div>
+
+            <button
+              id="toggle-all-archetypes-btn"
+              type="button"
+              class="self-start border border-ink bg-paper px-3.5 py-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-ink transition hover:bg-ink hover:text-paper lg:self-auto"
+            >
+              Inspect All 12 Archetypes
+            </button>
+          </div>
+
+          <div class="mt-6 grid gap-6 lg:grid-cols-12">
+            <div id="archetype-buttons-grid" class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:col-span-7">
+              <!-- Populated by script -->
+            </div>
+
+            <div id="archetype-detail-panel" class="border border-ink bg-paper p-5 lg:col-span-5 sm:p-6">
+              <!-- Populated by script -->
+            </div>
+          </div>
+        </div>
+
+        <!-- PILLARS II & III: 8 HABITS OF STEPHEN COVEY + 5 PHILOSOPHICAL THREADS OF CSA -->
+        <div class="mt-6 grid gap-6 lg:grid-cols-2">
+          <!-- Pillar II: 8 Habits -->
+          <div class="reveal-node border border-ink bg-surface p-6 sm:p-7">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+              Hero Pillar II · Stephen Covey
+            </p>
+            <h2 class="mt-1.5 font-serif text-2xl font-normal text-ink">
+              8 Habits in Daily Practice
+            </h2>
+            <p class="mt-1 text-sm text-ink/75">
+              How each habit anchors my training sessions, independent research, and peer collaboration.
+            </p>
+
+            <div id="covey-number-bar" class="mt-4 flex flex-wrap gap-1.5">
+              <!-- Populated by script -->
+            </div>
+
+            <div id="covey-active-box" class="mt-4 border border-ink bg-paper p-4 sm:p-5">
+              <!-- Populated by script -->
+            </div>
+
+            <div id="covey-index-list" class="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+              <!-- Populated by script -->
+            </div>
+          </div>
+
+          <!-- Pillar III: 5 Philosophical Threads of Colegio Suizo Americano -->
+          <div class="reveal-node border border-ink bg-surface p-6 sm:p-7">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+              Hero Pillar III · Colegio Suizo Americano (CSA)
+            </p>
+            <h2 class="mt-1.5 font-serif text-2xl font-normal text-ink">
+              5 Philosophical Threads Applied to My Life
+            </h2>
+            <p class="mt-1 text-sm text-ink/75">
+              Core philosophical threads from Colegio Suizo Americano applied to daily life in Guatemala and
+              international programs.
+            </p>
+
+            <div id="csa-threads-list" class="mt-4 space-y-2.5">
+              <!-- Populated by script -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: TKS & HOW I THINK -->
+    <section id="tks" class="border-b editorial-rule py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal-node max-w-3xl">
+          <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+            Section 02 · TKS &amp; How I Think
+          </p>
+          <h2 class="mt-2 font-serif text-3xl font-normal tracking-tight text-ink sm:text-4xl">
+            First-principles inquiry, deep tech focus, and hands-on builds.
+          </h2>
+          <p class="mt-3 text-base leading-relaxed text-ink/75">
+            In The Knowledge Society (TKS), I approach emerging technologies by isolating governing physics, testing
+            assumptions against real constraints, and building concrete prototypes while explaining ideas clearly in
+            public.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-2">
+          <article class="reveal-node border border-ink bg-surface p-6">
+            <div class="flex items-center justify-between border-b editorial-rule pb-3">
+              <span class="font-mono text-xs font-semibold uppercase text-signal">LINE 01 // FUSION &amp; MHD</span>
+              <span class="font-mono text-[11px] text-ink/60">AION-NOVUS</span>
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">Focus I: Nuclear Fusion</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink/75">
+              Focuses on applied magnetohydrodynamics for AION-NOVUS in a model of &ldquo;Developing a solid-state
+              magnetohydrodynamics electrical power generator with zero moving parts in a modular distribution model
+              not connected with the national power grid&rdquo;.
+            </p>
+          </article>
+
+          <article class="reveal-node border border-ink bg-surface p-6">
+            <div class="flex items-center justify-between border-b editorial-rule pb-3">
+              <span class="font-mono text-xs font-semibold uppercase text-cobalt">LINE 02 // ORBITAL &amp; LUNAR</span>
+              <span class="font-mono text-[11px] text-ink/60">DUAL TRACK</span>
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">Focus II: Space Technologies</h3>
+            <p class="mt-2.5 text-sm leading-relaxed text-ink/75">
+              Two complementary lines: (1) AION-NOVUS—designing a solid-state magnetohydrodynamics electrical
+              power generator with zero moving parts for a Lunar colony at Shackleton Crater; and (2) Surface Charge
+              &amp; Low-Scale Harvesting—investigating photoemission and stellar wind-driven potential differences
+              between exposed and shadowed spacecraft surfaces to evaluate auxiliary current extraction and
+              load-resistance trade-offs under space-charge and circuit limits.
+            </p>
+          </article>
+        </div>
+
+        <div class="reveal-node mt-12">
+          <div class="flex flex-col justify-between gap-2 border-b editorial-rule pb-3 sm:flex-row sm:items-baseline">
+            <h3 class="font-serif text-2xl font-normal text-ink">Builds, Prototypes &amp; Communication</h3>
+            <span class="font-mono text-xs text-cobalt">tks.life/p/rodrigo.pardo</span>
+          </div>
+
+          <div id="tks-builds-grid" class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Populated by script -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: BEYOND TKS -->
+    <section id="beyond-tks" class="border-b editorial-rule py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal-node flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <div class="max-w-2xl">
+            <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+              Section 03 · Beyond TKS
+            </p>
+            <h2 class="mt-2 font-serif text-3xl font-normal tracking-tight text-ink sm:text-4xl">
+              Engineering, code &amp; math, high-performance athletics, and creative craft.
+            </h2>
+            <p class="mt-3 text-base text-ink/75">
+              Explore my projects and training across technical systems, U17 Modern Pentathlon, and visual &amp;
+              linguistic expression.
+            </p>
+          </div>
+
+          <div id="beyond-filter-bar" class="flex flex-wrap gap-2 font-mono text-xs">
+            <button type="button" data-filter="all" class="beyond-filter-btn border border-ink bg-ink px-3.5 py-2 font-semibold uppercase text-paper">
+              All
+            </button>
+            <button type="button" data-filter="engineering" class="beyond-filter-btn border border-ink bg-surface px-3.5 py-2 font-semibold uppercase text-ink hover:bg-paper">
+              Engineering, Code &amp; Math
+            </button>
+            <button type="button" data-filter="sport" class="beyond-filter-btn border border-ink bg-surface px-3.5 py-2 font-semibold uppercase text-ink hover:bg-paper">
+              High-Performance Athletics
+            </button>
+            <button type="button" data-filter="creative" class="beyond-filter-btn border border-ink bg-surface px-3.5 py-2 font-semibold uppercase text-ink hover:bg-paper">
+              Creative &amp; Human Side
+            </button>
+          </div>
+        </div>
+
+        <div id="beyond-work-grid" class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <!-- Populated by script -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: NOW -->
+    <section id="now" class="border-b editorial-rule py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal-node border border-ink bg-surface p-6 sm:p-10">
+          <div class="flex flex-col justify-between gap-4 border-b editorial-rule pb-6 sm:flex-row sm:items-center">
+            <div>
+              <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+                Section 04 · Now
+              </p>
+              <h2 class="mt-1 font-serif text-3xl font-normal text-ink">
+                What I&apos;m Focused On Now
+              </h2>
+            </div>
+            <span class="inline-flex items-center gap-2 border border-ink bg-paper px-3.5 py-1.5 font-mono text-xs text-ink">
+              <span class="h-2 w-2 bg-signal"></span>
+              <span>Updated November 2026 · Guatemala City</span>
+            </span>
+          </div>
+
+          <div class="mt-8 grid gap-6 md:grid-cols-3">
+            <div class="border border-ink bg-paper p-5">
+              <span class="font-mono text-[11px] font-semibold uppercase text-cobalt">01 / ENERGY &amp; MODELS</span>
+              <h3 class="mt-2 font-serif text-xl font-normal text-ink">Solid-State MHD &amp; Fusion Focus</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink/75">
+                Refining solid-state magnetohydrodynamic power generator models for off-grid distribution and
+                Shackleton Crater lunar concepts, alongside Monte Carlo verification and Zenodo preprints.
+              </p>
+            </div>
+
+            <div class="border border-ink bg-paper p-5">
+              <span class="font-mono text-[11px] font-semibold uppercase text-cobalt">02 / ATHLETICS &amp; SCHOOL</span>
+              <h3 class="mt-2 font-serif text-xl font-normal text-ink">Pentathlon, Math &amp; School Leadership</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink/75">
+                Training as a contracted U17 Modern Pentathlete across disciplines, advancing math/physics
+                olympiad and calculus work, tutoring math, and supporting science &amp; debate clubs on the
+                Academic leadership commission in my school Suizo Americano.
+              </p>
+            </div>
+
+            <div class="border border-ink bg-paper p-5">
+              <span class="font-mono text-[11px] font-semibold uppercase text-cobalt">03 / COLLABORATION</span>
+              <h3 class="mt-2 font-serif text-xl font-normal text-ink">Programs, Mentorship &amp; Small Teams</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink/75">
+                Open to research mentorship, summer/academic fellowships, university &amp; program connections, and
+                small-team internships (&lt;25 people) in physics, hardware/embedded systems, or energy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: CONTACT -->
+    <section id="contact" class="border-b editorial-rule py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal-node border border-ink bg-surface p-8 text-ink sm:p-12">
+          <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+            <div class="lg:col-span-7">
+              <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+                Section 05 · Contact
+              </p>
+              <h2 class="mt-2 font-serif text-3xl font-normal leading-tight text-ink sm:text-4xl">
+                Let&apos;s connect around research, programs, or small-team builds.
+              </h2>
+              <p class="mt-3 max-w-2xl text-sm leading-relaxed text-ink/75 sm:text-base">
+                Reach out with context if you&apos;re leading an academic or summer program, offering research
+                mentorship, building in a small technical team (&lt;25 people), or collaborating across physics,
+                hardware, and athletics.
+              </p>
+            </div>
+
+            <div class="space-y-3 lg:col-span-5">
+              <a
+                href="mailto:erodrigopardo@gmail.com"
+                class="flex items-center justify-between border border-ink bg-paper px-4 py-3.5 font-mono text-xs font-medium text-ink transition hover:border-cobalt hover:bg-white sm:text-sm"
+              >
+                <span>erodrigopardo@gmail.com</span>
+                <span class="text-cobalt">&nearr;</span>
+              </a>
+
+              <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                <div class="border border-ink/25 bg-paper px-3.5 py-2.5">
+                  <span class="block font-mono text-[10px] uppercase text-ink/60">Instagram &amp; Handle</span>
+                  <span class="mt-0.5 block font-mono text-xs font-semibold text-cobalt">@rpardostudio</span>
+                </div>
+                <a
+                  href="https://www.linkedin.com/in/ernesto-rodrigo-pardo-villagrán"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group border border-ink/25 bg-paper px-3.5 py-2.5 transition hover:border-cobalt hover:bg-white"
+                >
+                  <span class="flex items-center justify-between font-mono text-[10px] uppercase text-ink/60">
+                    <span>LinkedIn</span>
+                    <span class="transition group-hover:text-cobalt">&nearr;</span>
+                  </span>
+                  <span class="mt-0.5 block truncate font-mono text-xs font-medium text-ink group-hover:text-cobalt">
+                    in/ernesto-rodrigo-pardo-villagrán
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06: MONTHLY NEWSLETTER -->
+    <section id="newsletter" class="py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal-node max-w-3xl">
+          <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+            Section 06 · Monthly Newsletter
+          </p>
+          <h2 class="mt-2 font-serif text-3xl font-normal tracking-tight text-ink sm:text-4xl">
+            Monthly notes from my research, prototypes, and training.
+          </h2>
+          <p class="mt-3 text-base text-ink/75">
+            Browse monthly dispatches starting from Issue #01 — November 2026 or subscribe on Substack to follow
+            along with my physics models, hardware builds, U17 Modern Pentathlon milestones, and open
+            opportunities.
+          </p>
+        </div>
+
+        <div class="reveal-node mt-10 grid gap-8 lg:grid-cols-12">
+          <div class="lg:col-span-7">
+            <div id="newsletter-tabs" class="flex flex-wrap gap-2">
+              <!-- Populated by script -->
+            </div>
+
+            <div id="newsletter-issue-card" class="mt-4 border border-ink bg-surface p-6 sm:p-7">
+              <!-- Populated by script -->
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="border border-ink bg-surface p-6 sm:p-7">
+              <p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">
+                Monthly Dispatch
+              </p>
+              <h3 class="mt-1.5 font-serif text-2xl font-normal text-ink">Subscribe to Updates</h3>
+              <p class="mt-1.5 text-sm leading-relaxed text-ink/75">
+                One concise update per month on Substack (
+                <a
+                  href="https://substack.com/@rpardo1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono text-xs font-semibold text-cobalt underline underline-offset-2 hover:text-ink"
+                >
+                  substack.com/@rpardo1
+                </a>
+                ) for mentors, admissions &amp; program reviewers, collaborators, and readers.
+              </p>
+
+              <div id="substack-confirmation" class="mt-5 hidden border border-cobalt bg-paper p-5">
+                <p id="confirmation-heading" class="font-mono text-xs font-semibold uppercase text-cobalt"></p>
+                <p id="confirmation-body" class="mt-1.5 text-xs leading-relaxed text-ink/75"></p>
+                <button
+                  id="reset-subscribe-btn"
+                  type="button"
+                  class="mt-3 font-mono text-xs font-semibold uppercase text-ink underline underline-offset-2 hover:text-cobalt"
+                >
+                  Back to newsletter form
+                </button>
+              </div>
+
+              <form id="newsletter-form" class="mt-5 space-y-4" novalidate>
+                <div>
+                  <label for="reader-name" class="block font-mono text-xs font-semibold uppercase text-ink">
+                    Name
+                  </label>
+                  <input
+                    id="reader-name"
+                    type="text"
+                    placeholder="Your name"
+                    class="mt-1.5 w-full border border-ink bg-paper px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-cobalt focus:bg-white focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label for="reader-email" class="block font-mono text-xs font-semibold uppercase text-ink">
+                    Email *
+                  </label>
+                  <input
+                    id="reader-email"
+                    type="email"
+                    required
+                    placeholder="name@domain.com"
+                    class="mt-1.5 w-full border border-ink bg-paper px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-cobalt focus:bg-white focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label for="reader-track" class="block font-mono text-xs font-semibold uppercase text-ink">
+                    How We Connect
+                  </label>
+                  <select
+                    id="reader-track"
+                    class="mt-1.5 w-full border border-ink bg-paper px-3.5 py-2.5 text-sm text-ink focus:border-cobalt focus:bg-white focus:outline-none"
+                  >
+                    <option value="Research, Programs & Admissions">Research, Programs &amp; Admissions</option>
+                    <option value="Small-Team Internship (<25 people)">Small-Team Internship (&lt;25 people)</option>
+                    <option value="Physics, Hardware & Energy">Physics, Hardware &amp; Energy</option>
+                    <option value="Modern Pentathlon & Athletics">Modern Pentathlon &amp; Athletics</option>
+                    <option value="Art, Languages & Community">Art, Languages &amp; Community</option>
+                  </select>
+                </div>
+
+                <p id="form-error-msg" class="hidden border border-signal bg-orange-50 px-3 py-2 font-mono text-xs text-signal"></p>
+
+                <button
+                  type="submit"
+                  class="inline-flex w-full items-center justify-center gap-2 border border-ink bg-cobalt px-4 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-white transition hover:bg-ink"
+                >
+                  <span>Subscribe to Monthly Newsletter</span>
+                  <span>&nearr;</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t editorial-rule bg-surface py-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 font-mono text-xs text-ink/65 sm:flex-row sm:px-6 lg:px-8">
+      <span>Ernesto Rodrigo Pardo Villagran · Guatemala City</span>
+      <span>@rpardostudio · erodrigopardo.com</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const TWELVE_GENIUS_ARCHETYPES = [
+        {
+          id: 'systems-architect',
+          name: 'The Systems Architect',
+          badge: 'Primary Archetype I',
+          tier: 'primary',
+          summary:
+            'Maps coupled physical, mathematical, and energetic subsystems into cohesive architectures before writing code or cutting hardware.',
+          inAction:
+            'Used to develop modular off-grid generation in AION-NOVUS and Human-Centered IoT Fall Detection for Elderly Safety & Dignity with AMPARO',
+        },
+        {
+          id: 'theoretical-synthesizer',
+          name: 'The Theoretical Synthesizer',
+          badge: 'Primary Archetype II',
+          tier: 'primary',
+          summary:
+            'Bridges abstract mathematical invariance, classical mechanics, and experimental constraints into testable hypotheses.',
+          inAction:
+            'Drives my Zenodo preprint documents about Magnetohydrodynamics and Black Holes.',
+        },
+        {
+          id: 'relentless-builder',
+          name: 'The Relentless Builder',
+          badge: 'Primary Archetype III',
+          tier: 'primary',
+          summary:
+            'Turns concepts into tangible prototypes, simulations, and daily training reps rather than leaving ideas on a slide.',
+          inAction:
+            'From ESP32 + MPU6050 fall detection to U17 Modern Pentathlon National Team trainings preparation.',
+        },
+        {
+          id: 'first-principles-investigator',
+          name: 'The First-Principles Investigator',
+          badge: 'Supporting Facet',
+          tier: 'supporting',
+          summary:
+            'Strips problems down to governing laws—conservation laws, fluid dynamics, and sensor error budgets—instead of copying surface templates.',
+          inAction:
+            'Applied when physics behind magnetohydrodynamics and building Python/Streamlit digital twins.',
+        },
+        {
+          id: 'disciplined-competitor',
+          name: 'The Disciplined Competitor',
+          badge: 'Supporting Facet',
+          tier: 'supporting',
+          summary:
+            'Treats high-stakes pressure—in pool lanes, fencing pistes, obstacle courses, or olympiad problem sets—as structured feedback.',
+          inAction:
+            'Shaped by competing at the UIPM International & World Championships by stepping up into contracted U17 Modern Pentathlon.',
+        },
+        {
+          id: 'creative-worldbuilder',
+          name: 'The Creative Worldbuilder',
+          badge: 'Supporting Facet',
+          tier: 'supporting',
+          summary:
+            'Uses narrative tension, poetry, oil painting, and chiaroscuro contrast to explore human stakes beyond equations.',
+          inAction:
+            'Exploring dramatic light-and-shadow contrast in chiaroscuro drawings alongside trilingual/multilingual learnings across Spanish, English, German, and Japanese.',
+        },
+        {
+          id: 'experimental-tinkerer',
+          name: 'The Experimental Tinkerer',
+          badge: 'Archetype 07 · Explorer',
+          tier: 'catalog',
+          summary:
+            'Tests sensor behavior, signal noise, and physical prototypes early to expose edge cases before scaling.',
+          inAction:
+            'Supports iterative hardware & simulation checks across embedded sensing and energy models.',
+        },
+        {
+          id: 'strategic-connector',
+          name: 'The Strategic Connector',
+          badge: 'Archetype 08 · Explorer',
+          tier: 'catalog',
+          summary:
+            'Links ideas across distinct domains—such as off-grid energy, aerospace control, and peer education.',
+          inAction:
+            'Connects TKS technical research with school academic events, science clubs, and debate initiatives.',
+        },
+        {
+          id: 'clear-communicator',
+          name: 'The Clear Communicator',
+          badge: 'Archetype 09 · Explorer',
+          tier: 'catalog',
+          summary:
+            'Turns dense technical papers and multi-step derivations into structured explanations anyone can follow.',
+          inAction:
+            'Guides my Medium essays, build-in-public logs, and one-on-one math tutoring.',
+        },
+        {
+          id: 'resilient-operator',
+          name: 'The Resilient Operator',
+          badge: 'Archetype 10 · Explorer',
+          tier: 'catalog',
+          summary:
+            'Maintains composure, pacing, and execution quality when schedules stack up or conditions shift.',
+          inAction:
+            'Anchors multi-discipline training days and demanding academic deadlines in Guatemala City.',
+        },
+        {
+          id: 'ethical-steward',
+          name: 'The Ethical Steward',
+          badge: 'Archetype 11 · Explorer',
+          tier: 'catalog',
+          summary:
+            'Evaluates engineering and leadership choices through human dignity, safety, and long-term community benefit.',
+          inAction:
+            'Informs human-centered safety prototypes like AMPARO and decentralized off-grid energy concepts.',
+        },
+        {
+          id: 'lifelong-polymath',
+          name: 'The Lifelong Polymath',
+          badge: 'Archetype 12 · Explorer',
+          tier: 'catalog',
+          summary:
+            'Keeps curiosity alive across physics, mathematics, athletics, visual art, and multiple languages.',
+          inAction:
+            'Sustains momentum across Spanish, English, German, and Japanese alongside STEM and pentathlon.',
+        },
+      ];
+
+      const COVEY_HABITS = [
+        {
+          habit: '1. Be Proactive',
+          practice:
+            'Taking initiative in Guatemala City across daily training sessions, independent physics study, and hands-on prototyping rather than waiting for external prompts.',
+        },
+        {
+          habit: '2. Begin with the End in Mind',
+          practice:
+            'Defining clear physical boundaries, mission goals, and competition standards upfront before committing time to builds or race execution.',
+        },
+        {
+          habit: '3. Put First Things First',
+          practice:
+            'Protecting focused blocks for mathematics, physics investigation, and multi-discipline pentathlon training ahead of low-leverage distractions.',
+        },
+        {
+          habit: '4. Think Win-Win',
+          practice:
+            "Designing off-grid Zunil energy concepts and serving on my school's Academic leadership commission to organize academic events and improve science and debate clubs at Colegio Suizo Americano.",
+        },
+        {
+          habit: '5. Seek First to Understand, Then to Be Understood',
+          practice:
+            'Examining problem constraints, mentor feedback, and team perspectives carefully before proposing technical or organizational solutions.',
+        },
+        {
+          habit: '6. Synergize',
+          practice:
+            'Integrating theoretical reasoning, simulation/hardware building, and athletic discipline so each domain reinforces clarity and resilience in the others.',
+        },
+        {
+          habit: '7. Sharpen the Saw',
+          practice:
+            'Renewing physical endurance in swimming, fencing, OCR, and laser run alongside math/physics olympiad drills, art, and languages.',
+        },
+        {
+          habit: '8. Find Your Voice & Inspire Others to Find Theirs',
+          practice:
+            'Documenting builds in public (@rpardostudio), tutoring math, and leading peer science and debate initiatives across my school community.',
+        },
+      ];
+
+      const CSA_THREADS = [
+        {
+          code: '01',
+          title: '01 Thinking (Pensar)',
+          subtitle: 'Fosters reflection and sound decision-making.',
+          reflection:
+            'Fomenting reflection and sound decision-making in physics, prototyping, and daily choices.',
+        },
+        {
+          code: '02',
+          title: '02 Responsible Independence (Independencia responsable)',
+          subtitle: 'Supports autonomy grounded in responsibility and respect.',
+          reflection:
+            'Supporting autonomy grounded in responsibility and respect across training, research, and academics.',
+        },
+        {
+          code: '03',
+          title: '03 Willpower / Perseverance (Voluntad)',
+          subtitle: 'Demonstrates that perseverance and effort open paths.',
+          reflection:
+            'Practicing perseverance and effort to open paths through hard problems and multi-sport training.',
+        },
+        {
+          code: '04',
+          title: '04 Social Skill (Habilidad social)',
+          subtitle: 'Fosters empathy, friendship, and teamwork.',
+          reflection:
+            'Fostering empathy, friendship, and teamwork with peers, teammates, and school clubs.',
+        },
+        {
+          code: '05',
+          title: '05 Creativity (Creatividad)',
+          subtitle: 'Drives imagination, dreams, and new ways to learn and express ideas.',
+          reflection:
+            'Driving imagination, dreams, and new ways to learn and express ideas through art, writing, and engineering.',
+        },
+      ];
+
+      const TKS_BUILDS = [
+        {
+          badge: 'Digital Twin',
+          title: 'AION-NOVUS Software-Defined Digital Twin & Stochastic Monte Carlo Verification',
+          summary:
+            'Software-defined digital twin and stochastic Monte Carlo verification framework evaluating solid-state magnetohydrodynamic power generation across parameter uncertainty and operating regimes.',
+          meta: 'Medium Build Log · Monte Carlo Verification',
+          href: 'https://medium.com/@rodrigopardo877/aion-novus-build-software-defined-digital-twin-stochastic-monte-carlo-verification-for-af039cedae73?sharedUserId=rodrigopardo877',
+        },
+        {
+          badge: 'Medium Article',
+          title:
+            'What “Grid Fin Stabilization of the Orion Launch Abort Vehicle” Gets Right & Tech Applications in Terrestrial Emergency Robots',
+          summary:
+            'Technical breakdown of aerodynamic control and stabilization insights from Orion launch abort grid fins and how analogous control principles translate to terrestrial emergency robotics.',
+          meta: 'Medium Article · Aerodynamic Control · Emergency Robotics',
+          href: 'https://medium.com/@rodrigopardo877/what-grid-fin-stabilization-of-the-orion-launch-abort-vehicle-gets-right-and-what-it-leaves-ea488ff37035?sharedUserId=rodrigopardo877',
+        },
+        {
+          badge: 'Medium Article',
+          title:
+            'The Electromagnetic Renaissance: The Role of Solid-State Magnetohydrodynamics in Future Nuclear Energy Systems',
+          summary:
+            "Concise technical look at solid-state magnetohydrodynamic energy conversion re-engineered for permanent lunar south pole base-load generation, based on my AION-NOVUS K'IN Lunar Colony paper.",
+          meta: 'Medium Article · Solid-State MHD · Lunar Base-Load',
+          href: 'https://medium.com/@rodrigopardo877/the-electromagnetic-renaissance-the-role-of-solid-state-magnetohydrodynamics-in-future-nuclear-42a38a27da7f?sharedUserId=rodrigopardo877',
+        },
+      ];
+
+      const BEYOND_TKS_WORK = [
+        {
+          category: 'engineering',
+          badge: 'Energy & Simulation',
+          title: 'AION-NOVUS Off-Grid & Shackleton Crater Concepts',
+          role: 'Solid-State Magnetohydrodynamics & Digital Twins',
+          description:
+            'Explores zero-moving-parts solid-state magnetohydrodynamic electrical power generation in a modular distribution model disconnected from the national grid, alongside Shackleton Crater lunar concepts and Python/Streamlit digital twins.',
+          doiLinks: [
+            { label: 'Zenodo DOI: 10.5281/zenodo.23196163', href: 'https://doi.org/10.5281/zenodo.23196163' },
+            { label: 'Zenodo DOI: 10.5281/zenodo.24406337', href: 'https://doi.org/10.5281/zenodo.24406337' },
+          ],
+          tags: ['Solid-State MHD', 'Zero Moving Parts', 'Python / Streamlit'],
+        },
+        {
+          category: 'engineering',
+          badge: 'Zenodo Preprint',
+          title: "AION-NOVUS: A Solid-State Magnetohydrodynamic Power Generator for the K'IN Lunar Colony",
+          role: "Zenodo Preprint · K'IN Lunar Colony Energy Architecture",
+          description:
+            "Preprint architecture and physical scaling model for a solid-state magnetohydrodynamic electrical power generator tailored to the K'IN Lunar Colony environment.",
+          href: 'https://doi.org/10.5281/zenodo.23196163',
+          tags: ['Zenodo Preprint', "K'IN Lunar Colony", '10.5281/zenodo.23196163'],
+        },
+        {
+          category: 'engineering',
+          badge: 'Zenodo Preprint',
+          title:
+            'Dimensionless Scaling and Second-Law Optimization of a Solid-State Magnetohydrodynamic Generator for Off-Grid Geothermal Power in Zunil, Guatemala',
+          role: 'Zenodo Preprint · Second-Law Thermodynamic Optimization',
+          description:
+            'Dimensionless scaling analysis and second-law thermodynamic optimization for a solid-state magnetohydrodynamic generator supporting off-grid geothermal power in Zunil, Guatemala.',
+          href: 'https://doi.org/10.5281/zenodo.24406337',
+          tags: ['Zenodo Preprint', 'Zunil Geothermal', '10.5281/zenodo.24406337'],
+        },
+        {
+          category: 'engineering',
+          badge: 'Assistive IoT & Hardware',
+          title: 'AMPARO: Human-Centered IoT Fall Detection for Elderly Safety & Dignity',
+          role: 'ESP32 + MPU6050 Inertial Sensing & Zenodo Preprint',
+          description:
+            'Human-centered IoT fall detection system engineered with ESP32 and MPU6050 inertial sensing to protect elderly safety and personal dignity with reliable real-time alerts.',
+          href: 'https://doi.org/10.5281/zenodo.24537527',
+          tags: ['ESP32 + MPU6050', 'Assistive IoT', '10.5281/zenodo.24537527'],
+        },
+        {
+          category: 'sport',
+          badge: 'Contracted U17 Athlete',
+          title: 'U17 Modern Pentathlon & International Competition',
+          role: 'Five-Discipline Athletic Training · Official UIPM Athlete Profile',
+          description:
+            'Contracted U17 Modern Pentathlon athlete training across five demanding disciplines in Guatemala City, building on UIPM International & World Championships experience.',
+          href: 'https://www.uipmworld.org/athlete/ernesto-rodrigo-pardo-villagran',
+          tags: ['Contracted U17', 'UIPM Athlete Profile', '5-Discipline Conditioning'],
+        },
+        {
+          category: 'creative',
+          badge: 'Visual Art & Languages',
+          title: 'Chiaroscuro Drawing & Multilingual Expression',
+          role: 'Visual Contrast, Narrative Craft & Multilingual Expression',
+          description:
+            'Exploring dramatic light-and-shadow contrast in chiaroscuro drawings alongside trilingual/multilingual learnings across Spanish, English, German, and Japanese.',
+          tags: ['Chiaroscuro Drawing', 'Visual Composition', 'Spanish · English · German · Japanese'],
+        },
+      ];
+
+      const NEWSLETTER_ISSUES = [
+        {
+          issue: 'Issue #01 — November 2026',
+          title: 'Solid-State MHD Models, Five-Sport Pacing & Academic Leadership',
+          excerpt:
+            'Notes on testing off-grid energy assumptions, balancing contracted U17 Modern Pentathlon training with math/physics problem sets, and organizing academic events and science/debate initiatives at Colegio Suizo Americano.',
+          takeaways: [
+            'Refining solid-state MHD digital twin parameters and Monte Carlo verification checks',
+            'Sequencing five-discipline pentathlon training with math/physics olympiad problem solving',
+            'Supporting science and debate clubs on the Academic leadership commission',
+          ],
+        },
+        {
+          issue: 'Issue #02 — December 2026',
+          title: 'Hardware Constraints, Zenodo Preprints & Chiaroscuro Contrast',
+          excerpt:
+            'Notes on embedded sensor experiments with AMPARO, preprint drafting precision, and how high-contrast chiaroscuro drawing sharpens visual observation.',
+          takeaways: [
+            'Evaluating ESP32 + MPU6050 fall detection reliability for elderly safety and dignity',
+            'Structuring technical writing for Zenodo preprints and Medium essays',
+            'Practicing chiaroscuro drawing and four languages alongside STEM work',
+          ],
+        },
+        {
+          issue: 'Issue #03 — January 2027',
+          title: 'International Competition Lessons & Building in Public',
+          excerpt:
+            'Reflections on competing at UIPM international events, contracted U17 Modern Pentathlon preparation, and sharing honest progress as @rpardostudio.',
+          takeaways: [
+            'Turning high-stakes competition pressure into repeatable preparation routines',
+            'Explaining complex physical systems clearly without unnecessary jargon',
+            'Connecting with research mentors, summer programs, and small engineering teams',
+          ],
+        },
+      ];
+
+      // Mobile menu logic
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconHam = document.getElementById('icon-hamburger');
+      const iconClose = document.getElementById('icon-close');
+      mobileToggle.addEventListener('click', () => {
+        const open = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', open);
+        iconHam.classList.toggle('hidden', !open);
+        iconClose.classList.toggle('hidden', open);
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          iconHam.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+        });
+      });
+
+      // Portrait image fallback + custom URL editor (including Google Drive URL conversion)
+      const portraitImg = document.getElementById('portrait-img');
+      const portraitFallback = document.getElementById('portrait-fallback');
+      const togglePhotoBtn = document.getElementById('toggle-photo-url-btn');
+      const photoUrlForm = document.getElementById('photo-url-form');
+      const photoUrlInput = document.getElementById('photo-url-input');
+
+      portraitImg.addEventListener('error', () => {
+        portraitImg.classList.add('hidden');
+        portraitFallback.classList.remove('hidden');
+        portraitFallback.classList.add('flex');
+      });
+
+      portraitImg.addEventListener('load', () => {
+        portraitFallback.classList.add('hidden');
+        portraitFallback.classList.remove('flex');
+        portraitImg.classList.remove('hidden');
+      });
+
+      togglePhotoBtn.addEventListener('click', () => {
+        photoUrlForm.classList.toggle('hidden');
+        photoUrlForm.classList.toggle('flex');
+      });
+
+      photoUrlForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const raw = photoUrlInput.value.trim();
+        if (!raw) return;
+        const driveMatch =
+          raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
+          raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+        portraitImg.src = driveMatch ? 'https://lh3.googleusercontent.com/d/' + driveMatch[1] : raw;
+        photoUrlForm.classList.add('hidden');
+        photoUrlForm.classList.remove('flex');
+      });
+
+      // Pillar I: 12 Student Genius Archetypes
+      let selectedArchetypeId = TWELVE_GENIUS_ARCHETYPES[0].id;
+      let showAllTwelve = false;
+      const archetypeGrid = document.getElementById('archetype-buttons-grid');
+      const archetypeDetail = document.getElementById('archetype-detail-panel');
+      const toggleAllArchBtn = document.getElementById('toggle-all-archetypes-btn');
+
+      function renderArchetypes() {
+        const list = showAllTwelve ? TWELVE_GENIUS_ARCHETYPES : TWELVE_GENIUS_ARCHETYPES.slice(0, 6);
+        archetypeGrid.innerHTML = '';
+        list.forEach((arch) => {
+          const active = arch.id === selectedArchetypeId;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className =
+            'flex flex-col justify-between border p-3.5 text-left transition ' +
+            (active
+              ? 'border-cobalt bg-cobalt/5 ring-1 ring-cobalt'
+              : 'border-ink/20 bg-paper/70 hover:border-ink hover:bg-white');
+
+          const badgeStyle =
+            arch.tier === 'primary'
+              ? 'bg-ink text-paper'
+              : arch.tier === 'supporting'
+              ? 'bg-cobalt/15 text-cobalt'
+              : 'bg-ink/10 text-ink/80';
+
+          btn.innerHTML =
+            '<span class="inline-block w-fit px-2 py-0.5 font-mono text-[10px] font-semibold uppercase ' +
+            badgeStyle +
+            '">' +
+            arch.badge +
+            '</span>' +
+            '<span class="mt-2 text-sm font-semibold text-ink">' +
+            arch.name +
+            '</span>';
+
+          btn.addEventListener('click', () => {
+            selectedArchetypeId = arch.id;
+            renderArchetypes();
+          });
+          archetypeGrid.appendChild(btn);
+        });
+
+        const current =
+          TWELVE_GENIUS_ARCHETYPES.find((a) => a.id === selectedArchetypeId) || TWELVE_GENIUS_ARCHETYPES[0];
+        archetypeDetail.innerHTML =
+          '<span class="inline-block border border-cobalt bg-cobalt/10 px-2.5 py-0.5 font-mono text-[11px] font-semibold uppercase text-cobalt">' +
+          current.badge +
+          '</span>' +
+          '<h3 class="mt-3 font-serif text-2xl font-normal text-ink">' +
+          current.name +
+          '</h3>' +
+          '<p class="mt-2.5 text-sm leading-relaxed text-ink/75">' +
+          current.summary +
+          '</p>' +
+          '<div class="mt-5 border border-ink/20 bg-surface p-4">' +
+          '<p class="font-mono text-[10px] font-semibold uppercase tracking-wider text-ink/60">How It Shows Up in Practice</p>' +
+          '<p class="mt-1.5 text-sm leading-relaxed text-ink">' +
+          current.inAction +
+          '</p>' +
+          '</div>';
+      }
+
+      toggleAllArchBtn.addEventListener('click', () => {
+        showAllTwelve = !showAllTwelve;
+        toggleAllArchBtn.textContent = showAllTwelve ? 'Show Core 6 Archetypes' : 'Inspect All 12 Archetypes';
+        renderArchetypes();
+      });
+      renderArchetypes();
+
+      // Pillar II: 8 Habits of Stephen Covey
+      let activeHabitIdx = 0;
+      const coveyNumBar = document.getElementById('covey-number-bar');
+      const coveyActiveBox = document.getElementById('covey-active-box');
+      const coveyIndexList = document.getElementById('covey-index-list');
+
+      function renderCovey() {
+        coveyNumBar.innerHTML = '';
+        coveyIndexList.innerHTML = '';
+        COVEY_HABITS.forEach((item, idx) => {
+          const isAct = idx === activeHabitIdx;
+          const numBtn = document.createElement('button');
+          numBtn.type = 'button';
+          numBtn.textContent = String(idx + 1);
+          numBtn.className =
+            'h-8 w-8 border font-mono text-xs font-semibold transition ' +
+            (isAct ? 'border-ink bg-ink text-paper' : 'border-ink/25 bg-paper text-ink hover:border-ink');
+          numBtn.addEventListener('click', () => {
+            activeHabitIdx = idx;
+            renderCovey();
+          });
+          coveyNumBar.appendChild(numBtn);
+
+          const rowBtn = document.createElement('button');
+          rowBtn.type = 'button';
+          rowBtn.className =
+            'flex items-center justify-between border px-3 py-2 text-left font-mono text-[11px] transition ' +
+            (isAct
+              ? 'border-cobalt bg-cobalt/5 font-semibold text-ink'
+              : 'border-ink/15 bg-paper/60 text-ink/75 hover:border-ink/40');
+          rowBtn.innerHTML = '<span class="truncate pr-2">' + item.habit + '</span><span>&rsaquo;</span>';
+          rowBtn.addEventListener('click', () => {
+            activeHabitIdx = idx;
+            renderCovey();
+          });
+          coveyIndexList.appendChild(rowBtn);
+        });
+
+        const chosen = COVEY_HABITS[activeHabitIdx];
+        coveyActiveBox.innerHTML =
+          '<p class="font-mono text-xs font-semibold uppercase text-cobalt">' +
+          chosen.habit +
+          '</p>' +
+          '<p class="mt-2 text-sm leading-relaxed text-ink">' +
+          chosen.practice +
+          '</p>';
+      }
+      renderCovey();
+
+      // Pillar III: 5 Philosophical Threads of CSA
+      let activeThreadIdx = 0;
+      const csaList = document.getElementById('csa-threads-list');
+
+      function renderCsaThreads() {
+        csaList.innerHTML = '';
+        CSA_THREADS.forEach((thread, idx) => {
+          const open = idx === activeThreadIdx;
+          const wrapper = document.createElement('div');
+          wrapper.className =
+            'border transition ' + (open ? 'border-cobalt bg-cobalt/5' : 'border-ink/20 bg-paper/70 hover:bg-white');
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'flex w-full items-center justify-between gap-3 px-4 py-3 text-left';
+          btn.innerHTML =
+            '<div>' +
+            '<span class="block text-sm font-semibold text-ink">' +
+            thread.title +
+            '</span>' +
+            '<span class="mt-0.5 block text-xs text-ink/70">' +
+            thread.subtitle +
+            '</span>' +
+            '</div>' +
+            '<span class="font-mono text-xs text-cobalt">' +
+            (open ? '&minus;' : '+') +
+            '</span>';
+          btn.addEventListener('click', () => {
+            activeThreadIdx = idx;
+            renderCsaThreads();
+          });
+          wrapper.appendChild(btn);
+
+          if (open) {
+            const panel = document.createElement('div');
+            panel.className = 'border-t border-ink/15 px-4 pt-2.5 pb-3.5 text-sm leading-relaxed text-ink';
+            panel.textContent = thread.reflection;
+            wrapper.appendChild(panel);
+          }
+
+          csaList.appendChild(wrapper);
+        });
+      }
+      renderCsaThreads();
+
+      // Section 02: TKS Builds
+      const tksBuildsGrid = document.getElementById('tks-builds-grid');
+      TKS_BUILDS.forEach((b) => {
+        const card = document.createElement('a');
+        card.href = b.href;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+        card.className =
+          'group flex flex-col justify-between border border-ink bg-surface p-6 transition hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#121316]';
+        card.innerHTML =
+          '<div>' +
+          '<div class="flex items-center justify-between gap-2">' +
+          '<span class="border border-cobalt bg-cobalt/10 px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase text-cobalt">' +
+          b.badge +
+          '</span>' +
+          '<span class="font-mono text-xs text-ink/50 transition group-hover:text-cobalt">&nearr;</span>' +
+          '</div>' +
+          '<h4 class="mt-4 font-serif text-xl font-normal leading-snug text-ink group-hover:text-cobalt">' +
+          b.title +
+          '</h4>' +
+          '<p class="mt-2.5 text-sm leading-relaxed text-ink/75">' +
+          b.summary +
+          '</p>' +
+          '</div>' +
+          '<p class="mt-5 border-t editorial-rule pt-3 font-mono text-[11px] text-ink/60">' +
+          b.meta +
+          '</p>';
+        tksBuildsGrid.appendChild(card);
+      });
+
+      // Section 03: Beyond TKS filterable grid
+      let currentFilter = 'all';
+      const beyondGrid = document.getElementById('beyond-work-grid');
+      const filterBtns = document.querySelectorAll('.beyond-filter-btn');
+
+      function renderBeyondWork() {
+        beyondGrid.innerHTML = '';
+        const items =
+          currentFilter === 'all'
+            ? BEYOND_TKS_WORK
+            : BEYOND_TKS_WORK.filter((item) => item.category === currentFilter);
+
+        items.forEach((item) => {
+          const el = document.createElement(item.href ? 'a' : 'article');
+          if (item.href) {
+            el.href = item.href;
+            el.target = '_blank';
+            el.rel = 'noopener noreferrer';
+          }
+          el.className =
+            'group flex flex-col justify-between border border-ink bg-surface p-6 transition ' +
+            (item.href ? 'hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_#121316]' : '');
+
+          let doisHtml = '';
+          if (item.doiLinks && item.doiLinks.length) {
+            doisHtml =
+              '<div class="mt-4 flex flex-col gap-1.5">' +
+              item.doiLinks
+                .map(
+                  (d) =>
+                    '<a href="' +
+                    d.href +
+                    '" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between border border-cobalt/40 bg-cobalt/5 px-3 py-1.5 font-mono text-[11px] font-medium text-cobalt hover:border-cobalt hover:bg-cobalt/10">' +
+                    '<span>' +
+                    d.label +
+                    '</span><span>&nearr;</span></a>'
+                )
+                .join('') +
+              '</div>';
+          }
+
+          const tagsHtml = item.tags
+            .map(
+              (t) =>
+                '<span class="border border-ink/20 bg-paper px-2 py-0.5 font-mono text-[10px] text-ink/80">' +
+                t +
+                '</span>'
+            )
+            .join('');
+
+          el.innerHTML =
+            '<div>' +
+            '<div class="flex items-center justify-between gap-2">' +
+            '<span class="border border-ink/25 bg-paper px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase text-ink">' +
+            item.badge +
+            '</span>' +
+            (item.href ? '<span class="font-mono text-xs text-ink/50 group-hover:text-cobalt">&nearr;</span>' : '') +
+            '</div>' +
+            '<h3 class="mt-4 font-serif text-xl font-normal leading-snug text-ink ' +
+            (item.href ? 'group-hover:text-cobalt' : '') +
+            '">' +
+            item.title +
+            '</h3>' +
+            '<p class="mt-1 font-mono text-[11px] text-cobalt">' +
+            item.role +
+            '</p>' +
+            '<p class="mt-3 text-sm leading-relaxed text-ink/75">' +
+            item.description +
+            '</p>' +
+            doisHtml +
+            '</div>' +
+            '<div class="mt-5 flex flex-wrap gap-1.5 border-t editorial-rule pt-4">' +
+            tagsHtml +
+            '</div>';
+
+          beyondGrid.appendChild(el);
+        });
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentFilter = btn.getAttribute('data-filter');
+          filterBtns.forEach((b) => {
+            const active = b.getAttribute('data-filter') === currentFilter;
+            b.className =
+              'beyond-filter-btn border border-ink px-3.5 py-2 font-mono text-xs font-semibold uppercase transition ' +
+              (active ? 'bg-ink text-paper' : 'bg-surface text-ink hover:bg-paper');
+          });
+          renderBeyondWork();
+        });
+      });
+      renderBeyondWork();
+
+      // Section 06: Newsletter issues + Substack redirect
+      let selectedIssueIdx = 0;
+      const newsletterTabs = document.getElementById('newsletter-tabs');
+      const newsletterCard = document.getElementById('newsletter-issue-card');
+
+      function renderNewsletterIssues() {
+        newsletterTabs.innerHTML = '';
+        NEWSLETTER_ISSUES.forEach((iss, idx) => {
+          const active = idx === selectedIssueIdx;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = iss.issue;
+          btn.className =
+            'border border-ink px-3.5 py-2 font-mono text-xs font-semibold transition ' +
+            (active ? 'bg-ink text-paper' : 'bg-surface text-ink hover:bg-paper');
+          btn.addEventListener('click', () => {
+            selectedIssueIdx = idx;
+            renderNewsletterIssues();
+          });
+          newsletterTabs.appendChild(btn);
+        });
+
+        const current = NEWSLETTER_ISSUES[selectedIssueIdx];
+        const bullets = current.takeaways
+          .map(
+            (pt) =>
+              '<li class="flex items-start gap-2.5 text-sm text-ink/85"><span class="mt-2 h-1.5 w-1.5 shrink-0 bg-cobalt"></span><span>' +
+              pt +
+              '</span></li>'
+          )
+          .join('');
+
+        newsletterCard.innerHTML =
+          '<p class="font-mono text-[11px] font-semibold uppercase tracking-widest text-cobalt">' +
+          current.issue +
+          '</p>' +
+          '<h3 class="mt-1.5 font-serif text-2xl font-normal text-ink">' +
+          current.title +
+          '</h3>' +
+          '<p class="mt-3 text-sm leading-relaxed text-ink/75">' +
+          current.excerpt +
+          '</p>' +
+          '<div class="mt-5 border-t editorial-rule pt-4">' +
+          '<p class="font-mono text-[10px] font-semibold uppercase tracking-wider text-ink/60">Highlights in This Issue</p>' +
+          '<ul class="mt-2.5 space-y-2">' +
+          bullets +
+          '</ul>' +
+          '</div>';
+      }
+      renderNewsletterIssues();
+
+      const newsletterForm = document.getElementById('newsletter-form');
+      const readerNameInput = document.getElementById('reader-name');
+      const readerEmailInput = document.getElementById('reader-email');
+      const readerTrackSelect = document.getElementById('reader-track');
+      const formErrorMsg = document.getElementById('form-error-msg');
+      const confirmationBox = document.getElementById('substack-confirmation');
+      const confirmationHeading = document.getElementById('confirmation-heading');
+      const confirmationBody = document.getElementById('confirmation-body');
+      const resetSubscribeBtn = document.getElementById('reset-subscribe-btn');
+
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailVal = readerEmailInput.value.trim();
+        if (emailVal && !emailVal.includes('@')) {
+          formErrorMsg.textContent = 'Please enter a valid email address.';
+          formErrorMsg.classList.remove('hidden');
+          return;
+        }
+        formErrorMsg.classList.add('hidden');
+
+        const displayName = readerNameInput.value.trim() || 'Reader';
+        const displayEmail = emailVal || 'Not provided';
+        const displayTrack = readerTrackSelect.value;
+
+        // Send subscriber details (Name, Email, How We Connect) to erodrigopardo@gmail.com
+        const payload = {
+          _subject: 'New Monthly Newsletter Subscriber — ' + displayName,
+          NAME: displayName,
+          EMAIL: displayEmail,
+          'HOW WE CONNECT': displayTrack,
+          source: 'erodrigopardo.com Monthly Newsletter',
+        };
+
+        fetch('https://formsubmit.co/ajax/erodrigopardo@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(payload),
+          keepalive: true,
+        }).catch(() => {
+          // Non-blocking background notification attempt
+        });
+
+        // Open Substack profile in a new tab so the visitor can subscribe/follow there too
+        window.open('https://substack.com/@rpardo1', '_blank', 'noopener,noreferrer');
+
+        confirmationHeading.textContent = 'Sent to erodrigopardo@gmail.com & Opened Substack';
+        confirmationBody.innerHTML =
+          'Logged <strong>NAME:</strong> ' +
+          displayName +
+          ' · <strong>EMAIL:</strong> ' +
+          displayEmail +
+          ' · <strong>HOW WE CONNECT:</strong> ' +
+          displayTrack +
+          '. Continue on <a href="https://substack.com/@rpardo1" target="_blank" rel="noopener noreferrer" class="font-mono font-semibold text-cobalt underline">substack.com/@rpardo1</a>.';
+        newsletterForm.classList.add('hidden');
+        confirmationBox.classList.remove('hidden');
+      });
+
+      resetSubscribeBtn.addEventListener('click', () => {
+        confirmationBox.classList.add('hidden');
+        newsletterForm.classList.remove('hidden');
+        readerNameInput.value = '';
+        readerEmailInput.value = '';
+      });
+
+      // Scroll reveal observer
+      const revealNodes = document.querySelectorAll('.reveal-node');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.06 }
+        );
+        revealNodes.forEach((node) => io.observe(node));
+      } else {
+        revealNodes.forEach((node) => node.classList.add('is-visible'));
+      }
+    })();
+  </script>
+</body>
+</html>
